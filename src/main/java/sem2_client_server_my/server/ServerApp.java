@@ -1,4 +1,4 @@
-package sem2_client_server.server;
+package sem2_client_server_my.server;
 
 public class ServerApp {
     public static void main(String[] args) {

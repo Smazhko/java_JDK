@@ -1,5 +1,4 @@
-package sem2_client_server.server;
-
+package sem2_client_server_my.server;
 public class SocketMsg {
     public enum MsgType{
         LOGIN,

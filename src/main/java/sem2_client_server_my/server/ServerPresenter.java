@@ -1,4 +1,4 @@
-package sem2_client_server.server;
+package sem2_client_server_my.server;
 
 
 import java.beans.PropertyChangeEvent;

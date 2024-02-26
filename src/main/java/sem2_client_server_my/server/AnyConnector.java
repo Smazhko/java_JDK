@@ -1,4 +1,4 @@
-package sem2_client_server.server;
+package sem2_client_server_my.server;
 
 public interface AnyConnector {
     void sendToUser(Object address, String message);

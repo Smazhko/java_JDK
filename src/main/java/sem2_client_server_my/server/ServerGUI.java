@@ -1,4 +1,4 @@
-package sem2_client_server.server;
+package sem2_client_server_my.server;
 
 
 import javax.swing.*;
@@ -15,7 +15,7 @@ import java.beans.PropertyChangeSupport;
 // https://javarush.com/groups/posts/3421-shablon-nabljudateljh-observer
 // однако, при этом view GUI должен знать про слушателя - презентер, чего не хотелось бы
 
-public class ServerGUI extends JFrame implements ServerUserInterface  {
+public class ServerGUI extends JFrame implements ServerUserInterface {
     // поля, необходимые для отрисовки окна
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private int WINDOW_POSX = (screenSize.width - WINDOW_WIDTH) / 2;
