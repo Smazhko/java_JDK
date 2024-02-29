@@ -1,4 +1,4 @@
-package sem5_philosophers;
+package sem5_philosophers.caseMy;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -21,13 +21,17 @@ public class Chopstick {
 
 
     public boolean isAvailable() {
-        //return available.get();
         return available;
     }
 
-
-    public void setAvailable(boolean available) {
-        //this.available.set(available);
-        this.available = available;
+    public synchronized void occupy(){
+        this.available = false;
+        Logger.printLog("    палочка " + number + " занята");
     }
+
+    public synchronized void makeAvailable(){
+        this.available = true;
+        Logger.printLog("        палочка " + number + " освободилась");
+    }
+
 }

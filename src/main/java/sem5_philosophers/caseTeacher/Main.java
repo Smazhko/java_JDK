@@ -1,4 +1,4 @@
-package sem5_philosophers;
+package sem5_philosophers.caseTeacher;
 
 /*
 Пять безмолвных философов сидят вокруг круглого стола, перед каждым философом стоит тарелка спагетти.

@@ -1,5 +1,4 @@
-package sem5_philosophers;
-
+package sem5_philosophers.caseMy;
 
 public class Table {
     private final static int SITS_COUNT = 5;
@@ -26,32 +25,18 @@ public class Table {
     }
 
     public void start(){
-        System.out.printf("%90s | 1 | 2 | 3 | 4 | 5 |%n", "Наличие палочек на столе ");
-
         for (int i = 0; i < SITS_COUNT; i++)
             philosophers[i].start();
     }
 
-    public synchronized String getInfo(){
-        StringBuilder result = new StringBuilder();
-        result.append("| ");
-            for (int i = 0; i < SITS_COUNT; i++)
-                result.append(sticks[i].isAvailable() ? "+" : "-").append(" | ");
-        return result.toString();
-        //return "";
-    }
 
     public synchronized boolean isChopsticksAvailable(Chopstick chopstick1, Chopstick chopstick2){
             if (chopstick1.isAvailable() && chopstick2.isAvailable()) {
-                chopstick1.setAvailable(false);
-                chopstick2.setAvailable(false);
+                chopstick1.occupy();
+                chopstick2.occupy();
                 return true;
             }
         return false;
     }
 
-    public synchronized void returnChopsticks(Chopstick chopstick1, Chopstick chopstick2) {
-        chopstick1.setAvailable(true);
-        chopstick2.setAvailable(true);
-    }
 }

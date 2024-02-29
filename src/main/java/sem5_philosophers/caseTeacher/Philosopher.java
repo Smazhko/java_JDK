@@ -1,4 +1,4 @@
-package sem5_philosophers;
+package sem5_philosophers.caseTeacher;
 
 import java.util.Random;
 
@@ -6,16 +6,13 @@ public class Philosopher extends Thread {
     private static int counter = 1;
     private final int number;
     private final Table table;
-    private Chopstick chopstick1;
-    private Chopstick chopstick2;
+    private Fork leftFork;
+    private Fork rightFork;
     private final Random rnd = new Random();
     private static final int EATS_COUNT = 3;
     private int minInterval = 1;
     private int maxInterval = 3;
     private int currentEat = 0;
-    private static final String[] color = new String[]{
-            "\u001B[91m", "\u001B[92m", "\u001B[93m", "\u001B[94m", "\u001B[95m", "\u001B[96m", "\u001B[97m"};
-
 
     public Philosopher(Table table) {
         number = counter;
@@ -44,7 +41,7 @@ public class Philosopher extends Thread {
     public void tryToEat0(){
         boolean continueFlag = true;
         while (continueFlag)
-            if (table.isChopsticksAvailable(chopstick1, chopstick2)) {
+            if (table.isForksAvailable(leftFork, rightFork)) {
                 continueFlag = false;
                 eat();
             }
@@ -53,13 +50,13 @@ public class Philosopher extends Thread {
 
 
     public void tryToEat1(){
-        synchronized (chopstick1){
-            if (chopstick2.isAvailable()){
-                synchronized (chopstick2) {
+        synchronized (leftFork){
+            if (rightFork.isAvailable()){
+                synchronized (rightFork) {
                     eat();
                 }
             }
-            else System.out.println(this + " палочек не дождался - ждёт дальше");
+            else System.out.println(this + " вилок не дождался - ждёт дальше");
         }
     }
 
@@ -80,42 +77,37 @@ public class Philosopher extends Thread {
 
 
     public void tryToEat(){
-        if (table.isChopsticksAvailable(chopstick1, chopstick2))
+        if (table.isForksAvailable(leftFork, rightFork))
             eat();
     }
 
 
     public void eat(){
         currentEat += 1;
-        printLog(this + " проголодался и " + currentEat + "-й раз взялся за свой рамен, заняв " + showBothChopsticks()+".");
+        printLog(this + " проголодался и " + currentEat + "-й раз принялся за свою лапшу, заняв " + showBothChopsticks()+".");
         try{
             sleep(rnd.nextInt(800, 1500));
         } catch (InterruptedException e){
             e.printStackTrace();
         }
-        chopstick1.setAvailable(true);
-        chopstick2.setAvailable(true);
+        leftFork.setAvailable(true);
+        rightFork.setAvailable(true);
         if(currentEat < EATS_COUNT)
             printLog("   " + this + " поел, отложил " + showBothChopsticks() + " и начал размышлять...");
         else
-            printLog("     " + this + " наелся досыта, " + showBothChopsticks() + " свободны. Ничего не сказав, он ушёл в закат.");
+            printLog("     " + this + " наелся досыта, " + showBothChopsticks() + " свободны.");
     }
 
-
-
-
-
-
-    public void setChopstick1(Chopstick stick1) {
-        this.chopstick1 = stick1;
+    public void setLeftFork(Fork stick1) {
+        this.leftFork = stick1;
     }
 
-    public void setChopstick2(Chopstick chopstick2) {
-        this.chopstick2 = chopstick2;
+    public void setRightFork(Fork rightFork) {
+        this.rightFork = rightFork;
     }
 
     public String showBothChopsticks() {
-        return "палочки " + chopstick1 + " и " + chopstick2;
+        return "вилки " + leftFork + " и " + rightFork;
     }
 
     @Override
@@ -124,6 +116,6 @@ public class Philosopher extends Thread {
     }
 
     private void printLog(String msg){
-        System.out.printf("%-100s%s%n", color[number - 1] + msg + "\u001B[0m", table.getInfo());
+        System.out.println(msg);
     }
 }
