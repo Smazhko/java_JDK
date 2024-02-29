@@ -16,6 +16,7 @@ public class ArraysComparator {
         if (arr1.length == arr2.length){
             for (int i = 0; i < arr1.length; i++) {
                 // Object имеет метод equals - им и воспользуемся
+                // если сравниваемые объекты будут
                 if (!(arr1[i].getClass().equals(arr2[i].getClass()) && arr1[i].equals(arr2[i]))) {
                     System.out.printf("[%s]: классы %s <> %s = %s, значения %s <> %s = %s.%n",
                             i,
