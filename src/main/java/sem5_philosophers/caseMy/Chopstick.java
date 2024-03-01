@@ -24,12 +24,12 @@ public class Chopstick {
         return available;
     }
 
-    public synchronized void occupy(){
+    public void occupy(){
         this.available = false;
         Logger.printLog("    палочка " + number + " занята");
     }
 
-    public synchronized void makeAvailable(){
+    public void makeAvailable(){
         this.available = true;
         Logger.printLog("        палочка " + number + " освободилась");
     }
