@@ -40,9 +40,6 @@ public class MontyHallGame {
     private int playerDoor, montyDoor, newPlayerDoor;
     private boolean isPlayerWin;
     private List<Boolean> statistics = new ArrayList<>();
-    // 1 = car
-    // 2 = goat
-    // 3 = empty
 
     public void startgame(){
         for (int i = 0; i < numberOfCycles; i++) {
